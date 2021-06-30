@@ -7,9 +7,7 @@ fun main(args: Array<String>) {
     val ANSI_VIBRANT_YELLOW = "\u001b[1;93m"
     val ANSI_GREEN = "\u001b[1;92m"
 
-    println("There was once a man called "+ ANSI_PURPLE + "Bladimir" + ANSI_RESET + ", he practiced the dark arts and became the ultimate being Bladcula.")
-    println(ANSI_PURPLE + "He" + ANSI_RESET + " was stopped by the priest society and banished to hell.")
-    println("Now 500 years later " + ANSI_PURPLE + "he" + ANSI_RESET +" is back for revenge, " + ANSI_PURPLE + "he" + ANSI_RESET + " killed all members of the priest society somehow "+ ANSI_CYAN + "you" + ANSI_RESET + " survived and are out on vengeance.")
+    println("Welkom bij "+ ANSI_PURPLE + "Juwilier Overval" + ANSI_RESET + "Succes met het ontsnappen...")
 
     println("\nWhat is your name?")
     var username = readLine()
@@ -26,9 +24,6 @@ fun main(args: Array<String>) {
 
     val cloak = Loot("Cloak", LootType.ARMOR)
     val redPotion = Loot("Health Potion", LootType.POTION)
-
-    // Collectible items
-    val key1 = Loot("Key 1", LootType.KEY)
 
     val wapenStok = Weapon("Wapen Stok", 16)
     val wapenStokItem = Loot("Wapen stok", LootType.WEAPON)
@@ -47,6 +42,7 @@ fun main(args: Array<String>) {
 
     // Enemies
     val bodyguard = Bodyguard("Bodyguard", 10,1, 5)
+    val guard1 = Waakhond("Waakhond", 12,1, 5)
 
 
     // Game start
@@ -73,7 +69,7 @@ fun main(args: Array<String>) {
                 var fight = readLine()
                 if (fight == "1") {
                     bodyguard.takeDamage(player.weapon.damageInflicted)
-                    if (zombie.lives < 1) {
+                    if (bodyguard.lives < 1) {
                         println("Bodyguard is defeated by $username.")
                         println(ANSI_GREEN + "Oh?" + ANSI_CYAN + "$username" + ANSI_GREEN + " heeft een wapenstok gevonden!'" + ANSI_RESET)
                         player.weapon = wapenStok
@@ -82,7 +78,7 @@ fun main(args: Array<String>) {
                         readLine()
                         level1 = false
                     } else {
-                        player.takeDamage(zombie.damageInflicted)
+                        player.takeDamage(bodyguard.damageInflicted)
                     }
                     } else {
                         println("Sorry, ik begrijp je niet. Type 1 om te vechten.")
@@ -111,10 +107,9 @@ fun main(args: Array<String>) {
 
             }
             fun repeatText1() {
-                println("\nThere are 3 doors one on your left, one on the right and one at the end of the hallway.")
-                println("Type 1 for the door on the left")
-                println("Type 2 for the door on the right")
-                println("Type 3 for the door at the end of the hallway")
+                println("\nKies een van de twee deuren...")
+                println("Type 1 voor deur 1")
+                println("Type 2 voor deur 2")
             }
 
 
@@ -147,12 +142,8 @@ fun main(args: Array<String>) {
                 if (fight == "1") {
                     guard1.takeDamage(player.weapon.damageInflicted)
                     if (guard1.lives < 1) {
-                        println("The guard is defeated by $username.")
-                        println(ANSI_GREEN + "Hmmm what is this " + ANSI_CYAN + "$username" + ANSI_GREEN + " took the baton " + ANSI_RED + "'Police baton'" + ANSI_RESET)
-                        println(ANSI_CYAN + "With this, it will be easier to fight stronger guards..." + ANSI_RESET)
-                        player.weapon = policeBaton
-                        player.inventory.add(policeBatonitem)
-                        println("Press enter to leave the room")
+                        println("De waakhond is verslagen door $username. Je hebt de game verslagen en bent ontsnapt!")
+                        println("Type 'Quit' om het spel te verlaten...)
                         readLine()
 
                         level12 = false
@@ -167,7 +158,7 @@ fun main(args: Array<String>) {
         }
 
         fun repeatText2() {
-            println("\nType 1 to go upstairs.\nType 2 to go downstairs. \nType 3 to enter the office.")
+            println("\nType 1 om het gevecht te starten")
         }
 
 
