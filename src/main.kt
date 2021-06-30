@@ -23,7 +23,6 @@ fun main(args: Array<String>) {
     val fistSwordItem = Loot("Fist", LootType.WEAPON)
 
     val cloak = Loot("Cloak", LootType.ARMOR)
-    val redPotion = Loot("Health Potion", LootType.POTION)
 
     val wapenStok = Weapon("Wapen Stok", 16)
     val wapenStokItem = Loot("Wapen stok", LootType.WEAPON)
@@ -31,7 +30,6 @@ fun main(args: Array<String>) {
     // Begin Items
     player.inventory.add(cloak)
     player.weapon = fistSword
-    player.inventory.add(redPotion)
     player.inventory.add(fistSwordItem)
 
     // Begin var

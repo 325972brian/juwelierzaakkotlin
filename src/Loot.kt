@@ -1,5 +1,5 @@
 enum class LootType{
-    POTION, ARMOR, WEAPON
+   ARMOR, WEAPON
 }
 
 class Loot(val name: String, val lootType: LootType) {
