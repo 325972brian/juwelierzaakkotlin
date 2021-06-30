@@ -21,8 +21,8 @@ fun main(args: Array<String>) {
     }
     val player = Player("$username", 4, 30)
     // Begin items
-    val woodenSword = Weapon("Wooden Sword", 8)
-    val woodenSwordItem = Loot("Wooden Sword", LootType.WEAPON)
+    val fistSwordItem = Weapon("Fist", 8)
+    val fistItem = Loot("Fist", LootType.WEAPON)
 
     val cloak = Loot("Cloak", LootType.ARMOR)
     val redPotion = Loot("Health Potion", LootType.POTION)
@@ -30,19 +30,18 @@ fun main(args: Array<String>) {
     // Collectible items
     val key1 = Loot("Key 1", LootType.KEY)
 
-    val ironSword = Weapon("Iron Sword", 16)
-    val ironSwordItem = Loot("Iron Sword", LootType.WEAPON)
+    val wapenStok = Weapon("Wapen Stok", 16)
+    val wapenStokItem = Loot("Wapen stok", LootType.WEAPON)
 
     // Begin Items
     player.inventory.add(cloak)
-    player.weapon = woodenSword
+    player.weapon = fistSword
     player.inventory.add(redPotion)
-    player.inventory.add(woodenSwordItem)
+    player.inventory.add(fistSwordItem)
 
     // Begin var
     var level1 = true
-    var key1Data = false
-    var mummyBoss = true
+    var buffedBoss = true
     // World 2
     var level12 = true
 
@@ -111,17 +110,6 @@ fun main(args: Array<String>) {
 
 
             }
-
-            fun level3() {
-                if (key1Data != true) {
-                    println("The door is closed.")
-                    println("Choose another option!")
-                } else {
-                    println("You're entering the basement.")
-                    world = 2
-                }
-            }
-
             fun repeatText1() {
                 println("\nThere are 3 doors one on your left, one on the right and one at the end of the hallway.")
                 println("Type 1 for the door on the left")
@@ -136,7 +124,6 @@ fun main(args: Array<String>) {
                 "QUIT", "EXIT", "Q" -> System.exit(0)
                 "1" -> level1()
                 "2" -> level2()
-                "3" -> level3()
                 "HELP" -> showHelp()
                 "INVENTORY", "INV" -> player.showInventory()
                 "AGAIN" -> repeatText1()
@@ -145,33 +132,60 @@ fun main(args: Array<String>) {
                 }
             }
         }
-            }
 
-            fun repeatText2() {
-                println("\nType 1 for the door on the left.\nType 2 for the door on the right\nType 3 for the door in front of you")
-            }
+    //world 2
 
+    println("Je bent bijna bij de uitgang\nAlleen staat er een agresieve waakhond voor de uitgang.")
+    println("\nType 1 om het gevecht te starten")
+    while (world == 2) {
 
-            val userInput: List<String> = playerInput().split(delimiters = *charArrayOf(' ')).map { it.toUpperCase() }
+        fun level12() {
+            println("Je ziet de waakhond, versla hem om de game te winnen!")
+            println("Type in 1 to fight.")
+            while (level12) {
+                var fight = readLine()
+                if (fight == "1") {
+                    guard1.takeDamage(player.weapon.damageInflicted)
+                    if (guard1.lives < 1) {
+                        println("The guard is defeated by $username.")
+                        println(ANSI_GREEN + "Hmmm what is this " + ANSI_CYAN + "$username" + ANSI_GREEN + " took the baton " + ANSI_RED + "'Police baton'" + ANSI_RESET)
+                        println(ANSI_CYAN + "With this, it will be easier to fight stronger guards..." + ANSI_RESET)
+                        player.weapon = policeBaton
+                        player.inventory.add(policeBatonitem)
+                        println("Press enter to leave the room")
+                        readLine()
 
-            when (userInput.first()) {
-                "QUIT", "EXIT", "Q" -> System.exit(0)
-                "1" -> level12()
-                "2" -> level22()
-                "3" -> level32()
-                "HELP" -> showHelp()
-                "INVENTORY", "INV" -> player.showInventory()
-                "AGAIN" -> repeatText2()
-                else -> {
-                    println("You can type in 'help' to see a list of commands")
+                        level12 = false
+                    } else {
+                        player.takeDamage(guard1.damageInflicted)
+                    }
+                } else {
+                    println("The player typed something that doesn't work maybe type in 1 to hit the enemy.")
                 }
+
             }
         }
 
+        fun repeatText2() {
+            println("\nType 1 to go upstairs.\nType 2 to go downstairs. \nType 3 to enter the office.")
+        }
 
 
+        val userInput: List<String> = playerInput().split(delimiters = *charArrayOf(' ')).map { it.toUpperCase() }
 
-}
+        when (userInput.first()) {
+            "QUIT", "EXIT", "Q" -> System.exit(0)
+            "1" -> level12()
+            "HELP" -> showHelp()
+            "INVENTORY", "INV" -> player.showInventory()
+            "AGAIN" -> repeatText2()
+            else -> {
+                println("You can type in 'help' to see a list of commands")
+            }
+        }
+    }
+            }
+
 
 // Fun out of main
 
