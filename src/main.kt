@@ -19,8 +19,8 @@ fun main(args: Array<String>) {
     }
     val player = Player("$username", 4, 30)
     // Begin items
-    val fistSwordItem = Weapon("Fist", 8)
-    val fistItem = Loot("Fist", LootType.WEAPON)
+    val fistSword = Weapon("Fist", 8)
+    val fistSwordItem = Loot("Fist", LootType.WEAPON)
 
     val cloak = Loot("Cloak", LootType.ARMOR)
     val redPotion = Loot("Health Potion", LootType.POTION)
@@ -91,8 +91,8 @@ fun main(args: Array<String>) {
                 while (buffedBoss) {
                     println(ANSI_YELLOW + "Los de som op")
                     println(ANSI_VIBRANT_YELLOW + "Wat is: 56+14+31")
-                    var choosemummy = readLine()
-                    if (choosemummy == "101") {
+                    var choosebuffed = readLine()
+                    if (choosebuffed == "101") {
                         println(ANSI_GREEN + "Dat is correct, de buffed bodyguard is verslagen!")
                         println(ANSI_RESET + "Je kan nu door naar level 2")
                         buffedBoss = false
@@ -143,7 +143,7 @@ fun main(args: Array<String>) {
                     guard1.takeDamage(player.weapon.damageInflicted)
                     if (guard1.lives < 1) {
                         println("De waakhond is verslagen door $username. Je hebt de game verslagen en bent ontsnapt!")
-                        println("Type 'Quit' om het spel te verlaten...)
+                        println("Type 'Quit' om het spel te verlaten...")
                         readLine()
 
                         level12 = false
@@ -199,17 +199,3 @@ fun playerInput(): String {
     }
     return input.toLowerCase()
 }
-
-
-///////////////// Archive /////////////////
-//val mummyBoss = Mummy("Mummy", 30, 2)
-
-//fun level1() {
-//    var world1 = false
-//    println("Fucking ghost's I hate ghost's")
-//}
-
-//    println("Enter a string :")
-//    val userInputString = readLine()
-//
-//    println("You have entered : $userInputString")
