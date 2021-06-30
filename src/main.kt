@@ -57,7 +57,7 @@ fun main(args: Array<String>) {
     println("Type 2 voor deur 2")
 
 
-    //------------------End of the start------------------
+    //------------------End of the start-------------------
     var playing = true
     var world = 1
     while (world == 1) {
